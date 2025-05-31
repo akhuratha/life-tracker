@@ -2,12 +2,8 @@ import calmap
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
-from datetime import date
-
 from matplotlib import pyplot as plt
-
-from src.database.utils import db_ops  # Replace with actual module name
+from src.database.utils import db_ops
 
 st.set_page_config(page_title="Habit Dashboard", layout="wide")
 
@@ -42,7 +38,6 @@ if not all_logs:
     st.stop()
 
 # Convert to DataFrame
-# Convert to DataFrame
 df = pd.DataFrame([
     {"Date": log.log_date, "Value": log.value}
     for log in all_logs
@@ -65,7 +60,6 @@ col3.metric("Most Recent", df["Date"].max().strftime('%Y-%m-%d'))
 # endregion
 
 # region Heat Map
-# Aggregate if needed — e.g., sum or mean per day
 df = df.set_index("Date")
 daily_values = df['Value']
 
@@ -73,8 +67,6 @@ st.title("Habit Tracker - GitHub-style Contribution Heatmap")
 
 # Plot the heatmap using calmap
 fig, ax = plt.subplots(figsize=(16, 5))
-
-
 
 if selected_habit.is_binary_habit:
     from matplotlib.colors import LinearSegmentedColormap

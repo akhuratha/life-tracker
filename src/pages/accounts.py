@@ -30,10 +30,8 @@ with st.form("delete_account"):
     account_to_delete = st.selectbox("Select an account to delete", options=list(account_ids.keys()), format_func=lambda x: account_ids[x])
     submitted = st.form_submit_button("Delete Account")
     if submitted:
-        # Note: You may want to add a confirmation step before deleting
+        # Note: may want to add a confirmation step before deleting
         # For simplicity, we're directly deleting here
         db_ops.db.delete(db_ops.db.get(Account, account_to_delete))
         db_ops.db.commit()
         st.success(f"Account '{account_ids[account_to_delete]}' deleted successfully")
-        st.experimental_rerun()
-

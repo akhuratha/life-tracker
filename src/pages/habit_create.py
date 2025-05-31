@@ -1,41 +1,5 @@
-# """
-# Defaults to habits dashboard
-#
-# - create_habit -> pop up from to create a new habit
-# - show list of habits
-#     - option to edit each habit
-# - Select any habit -> Loads the habits dashboards
-# """
-#
-#
-# import streamlit as st
-#
-#
-# @st.dialog('Create Habit')
-# def create_habit():
-#     with st.form("Create Habit", clear_on_submit=True):
-#
-#         st.text_input('Habit Name', key='habit_name')
-#         st.checkbox('Binary Habit', key='is_binary')
-#
-#         st.number_input('Habit Target Value', key='habit_target_value')
-#         st.text_input('Habit Unit(s)', key='habit_units')
-#         st.number_input('Habit Target Period (in Days)', key='habit_target_period_in_days')
-#
-#         st.checkbox('Negative Habit', key='is_negative')
-#
-#         st.form_submit_button("Create Habit")
-#
-#
-#
-# st.button('Create Habit', on_click=create_habit)
-
-
 import streamlit as st
-from src.database.utils import DbOps, db_ops  # Update with your actual import path
-
-# # Instantiate DB
-# db = DbOps()
+from src.database.utils import db_ops
 
 st.title("🌀 Create a New Habit")
 
@@ -54,7 +18,7 @@ with st.form("habit_form", clear_on_submit=True):
 
     if submitted:
         if not name:
-            st.warning("Name and Frequency Unit are required.")
+            st.warning("Name is mandatory.")
         else:
             habit = db_ops.create_habit(
                 name=name,

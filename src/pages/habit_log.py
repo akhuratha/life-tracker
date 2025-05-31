@@ -1,7 +1,6 @@
 import streamlit as st
 from datetime import date
-from uuid import uuid4
-from src.database.utils import db_ops, HabitLog, Habit  # Import your models properly
+from src.database.utils import db_ops
 
 st.title("📅 Daily Habit Log")
 
